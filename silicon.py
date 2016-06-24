@@ -29,50 +29,77 @@ class Interpreter:
             if code[i] in "0123456789":
                 self.push(int(code[i]))
 
-            elif code[i] == "`":
+            elif code[i] == '`':
                 time.sleep(1)
 
-            elif code[i] == '(':
-                ifCode = ""
+            elif code[i] == ',':
+                pass
+
+            elif code[i] == 'V':
+                self.stack = self.stack[::-1]
+
+            elif code[i] == '"':
+                text = ''
                 while i < len(code):
                     i += 1
-                    if code[i] == ')':
-                        break
+                    if code[i] == '"': break
+                    text += code[i]
 
+                self.push(text)
+
+            elif code[i] == '´':
+                replace = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == '´': break
+                    replace += code[i]
+
+                r = replace.split('|')
+                self.push(self.pop().replace(r[0], r[1]))
+
+
+            elif code[i] == '_':
+                num = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == '_': break
+                    num += code[i]
+
+                self.push(int(num))
+
+            elif code[i] == '{':
+                func = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == '}': break
+                    func += code[i]
+
+                self.function = func
+
+            elif code[i] == '(':
+                ifCode = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == ')': break
                     ifCode += code[i]
 
                 if self.peek() == 1:
                     self.run(ifCode)
 
             elif code[i] == '[':
-                lCode = ""
+                loop = ''
                 while i < len(code):
                     i += 1
-                    if code[i] == ']':
-                        break
+                    if code[i] == ']': break
+                    loop += code[i]
 
-                    lCode += code[i]
-
-                loop = lCode.split('|')
-                for i in range(0, int(loop[0])):
-                    self.run(loop[1])
+                while self.peek() != True:
+                    self.run(loop)
                     
-            elif code[i] == '"':
-                text = ""
+            elif code[i] == '#':
                 while i < len(code):
                     i += 1
-                    if code[i] == '"':
-                        break
-                    
-                    text += code[i]
-
-                self.push(text)
-
-            elif code[i] == "#":
-                while i < len(code):
-                    i += 1
-                    if code[i] == "#":
-                        break
+                    if code[i] == '#': break
                 
             else:
                 COMMANDS.get(code[i], lambda x:x)(self)

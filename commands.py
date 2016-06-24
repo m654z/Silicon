@@ -4,6 +4,10 @@ from math import sqrt
 import random
 import math
 import base64
+try:
+    from fractions import gcd
+except ImportError:
+    from math import gcd
 
 def add(val1, val2):
     return val1 + val2
@@ -89,6 +93,13 @@ def is_equal(n1, n2):
     else:
         return 0
 
+def list_sum(l):
+    n = 0
+    for i in l:
+        n += int(i)
+
+    return n
+
 def read_file(f):
     f = open(f, 'r')
     text = f.read()
@@ -148,7 +159,9 @@ COMMANDS = {
     'H': lambda x:x.push(int(x.pop())/2),
     'I': lambda x:x.push(int(input())),
     'J': lambda x:x.push(x.pop().append(x.pop())),
+    'K': lambda x:x.push(gcd(x.pop(), x.pop())),
     'L': lambda x:x.push(x.peek().length()),
+    'M': lambda x:x.push(list_sum(x.pop())),
     'N': lambda x:x.push(int(x.pop())+1),
     'O': lambda x:x.push(ord(x.peek())),
     'P': lambda x:x.push(is_prime(x.pop())),
@@ -157,5 +170,5 @@ COMMANDS = {
     'U': lambda x:x.push(x.peek()),
     'W': lambda x:write_file(x.pop(), x.pop()),
     'X': lambda x:x.push(random.shuffle(x.pop())),
-    '.': lambda x:x.push(hello(x.pop())),
+    '¤': lambda x:x.push(hello(x.pop())),
 }
