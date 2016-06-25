@@ -100,6 +100,9 @@ def list_sum(l):
 
     return n
 
+def int_list(l):
+    return list(map(int, l))
+
 def read_file(f):
     f = open(f, 'r')
     text = f.read()
@@ -165,11 +168,13 @@ COMMANDS = {
     'N': lambda x:x.push(int(x.pop())+1),
     'O': lambda x:x.push(ord(x.peek())),
     'P': lambda x:x.push(is_prime(x.pop())),
+    'Q': lambda x:x.push(sorted(x.pop())),
     'R': lambda x:x.push(x.pop()[::-1]),
     'S': lambda x:x.push(list(str(x.pop()))),
+    'T': lambda x:x.push(int_list(x.pop())),
     'U': lambda x:x.push(x.peek()),
     'W': lambda x:write_file(x.pop(), x.pop()),
     'X': lambda x:random.shuffle(x.peek()),
+    'Y': lambda x:x.push(x.pop().split(x.pop())),
     '¤': lambda x:x.push(hello(x.pop())),
-    '.': lambda x:x.push(x.it),
 }
