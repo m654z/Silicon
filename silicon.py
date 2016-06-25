@@ -1,11 +1,16 @@
 from functools import *
 from commands import *
 import time
+import ascii_lib
+import pprint
 
 class Interpreter:
+    grid = 0
+    it = 0
     stack = []
     function = ""
     debug = False
+    asc = ascii_lib.AsciiArt()
 
     def push(self, val):
         self.stack.append(val)
@@ -15,6 +20,17 @@ class Interpreter:
 
     def peek(self):
         return self.stack[-1]
+
+    def clr(self):
+        s = self.stack
+        self.stack = []
+        return s
+
+    def get(self):
+        a = self.pop()
+        b = self.peek()
+        self.push(a)
+        return b
 
     def run_func(self):
         self.run(self.function)
@@ -29,7 +45,7 @@ class Interpreter:
             if code[i] in "0123456789":
                 self.push(int(code[i]))
 
-            elif code[i] == '`':
+            elif code[i] == '¨':
                 time.sleep(1)
 
             elif code[i] == ',':
@@ -37,6 +53,33 @@ class Interpreter:
 
             elif code[i] == 'V':
                 self.stack = self.stack[::-1]
+
+            elif code[i] == 'U':
+                while i < len(code):
+                    i += 1
+                    if code[i] == 'U': break
+
+                    if code[i] == 's':
+                        self.push(self.asc.grid)
+
+                    elif code[i] == 'p':
+                        pprint.pprint(self.asc.grid)
+
+                    elif code[i] == 'd':
+                        self.asc.draw(self.pop(), self.pop(), self.pop())
+
+                    elif code[i] == 'm':
+                        self.asc.move(self.pop(), self.pop(), self.pop(),
+                                      self.pop())
+
+                    elif code[i] == 'e':
+                        self.asc.erase(self.pop(), self.pop())
+
+                    elif code[i] == 'G':
+                        self.asc.draw_ground()
+
+                    elif code[i] == 'C':
+                        self.asc.draw_ceil()
 
             elif code[i] == '"':
                 text = ''
@@ -93,8 +136,11 @@ class Interpreter:
                     if code[i] == ']': break
                     loop += code[i]
 
-                while self.peek() != True:
+                while self.peek() != 1:
+                    self.it += 1
                     self.run(loop)
+
+                self.it = 0
                     
             elif code[i] == '#':
                 while i < len(code):
