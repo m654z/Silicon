@@ -176,5 +176,7 @@ COMMANDS = {
     'W': lambda x:write_file(x.pop(), x.pop()),
     'X': lambda x:random.shuffle(x.peek()),
     'Y': lambda x:x.push(x.pop().split(x.pop())),
+    'Z': lambda x:x.push(len(x.peek().encode('utf-8'))),
+    '\\': lambda x:x.push(str(x) for x in range(0, x.pop()+1)),
     '¤': lambda x:x.push(hello(x.pop())),
 }

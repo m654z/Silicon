@@ -136,9 +136,15 @@ class Interpreter:
                     if code[i] == ']': break
                     loop += code[i]
 
-                while self.peek() != 1:
-                    self.it += 1
-                    self.run(loop)
+                if '|' in loop:
+                    loop = loop.split('|')
+                    self.run(loop[0])
+                    while self.peek() != 0:
+                        self.run(loop[1])
+
+                else:
+                    while self.peek() != 0:
+                        self.run(loop)
 
                 self.it = 0
                     
