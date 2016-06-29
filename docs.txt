@@ -1,0 +1,94 @@
+Arithmetical and Math-related
+-----------------------------
+
++	Adds two numbers together
+-	Subtracts two numbers
+*	Multiples two numbers
+/	Divides two numbers
+m	Gets the modulo of two number
+^	Calculates the exponent of two numbers
+!	Calculates the factorial of a number
+q	Calculate the square root of a number
+s	Square a number
+
+Comparison
+----------
+
+Comparison commands push 0 if the answer is false, and 1 if it's true.
+
+<	Greater than
+>	Less than
+=	Equal to
+
+Pre-initialized Variables
+-------------------------
+
+a	Push the lowercase alphabet
+d	Push all digits
+A	Push the uppercase alphabet
+Ù	Push an empty list
+Â	Push the number 10
+Ô	Push the number 100
+Û	Push the number 255
+
+Misc. Commands
+--------------
+
+c	Round a number to the ceiling
+e	Evaluate a string as Python code
+f	Round a number to the floor
+h	Get the ASCII character of a value
+i	Get input
+j	Join a list
+k	Get a specific list item
+l	Make a string lowercase
+n	Converts a string to an integer
+o	Outputs the top stack item
+p	Pops the top item from the stack
+r	Get a random number in the range 0-100
+t	Checks what type of value the item is
+u	Makes a string uppercase
+w	Reads from a file
+y	Gets the length of a string or list
+z	Encodes a string using ROT-n
+B	Encodes a string using Base64
+C	Runs the function
+D	Decrements a number
+E	Evaluate a string as Silicon code
+F	Get the nth Fibonacci number
+G	Pop an item from a list
+K	Greatest Common Divisor
+M	Get the sum of all list items
+N	Increment a number
+O	Get the ASCII value of a character
+P	Checks if a number is a prime
+Q	Sorts a list
+R	Reverses a string or list
+S	Turns a string into a list
+T	Converts all list items to integers
+U	Duplicates a value
+V	Reverses the stack
+W	Writes to a file
+X	Shuffles a list
+Z	Gets the length of a UTF-8 encoded string
+Á	Removes certain characters in a string
+É	Gets the mean of a list
+Í	Gets the mode of a list
+Ó	Gets the median of a list
+À	Concatenates two string
+È	Splits a string at commas
+Ì	Concatenate a string with itself n times
+Ò	Get the product of a list
+Ê	Extends a list with another one
+Î	Inserts a list item at a certain index
+Ä	Push the 2nd-top stack item
+Ë	XOR
+Ï	Shift left
+Ö	Push the 3rd-top stack item
+Ü	Shift right
+Ã	AND
+Ñ	NOT
+Õ	OR
+\	Pushes a list with number in the range n-n
+¨	Sleeps for one second
+,	Placeholder, does nothing

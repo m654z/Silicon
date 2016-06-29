@@ -167,7 +167,6 @@ COMMANDS = {
     'I': lambda x:x.push(int(input())),
     'J': lambda x:x.push(x.pop().append(x.pop())),
     'K': lambda x:x.push(gcd(x.pop(), x.pop())),
-    'L': lambda x:x.push(x.peek().length()),
     'M': lambda x:x.push(list_sum(x.pop())),
     'N': lambda x:x.push(int(x.pop())+1),
     'O': lambda x:x.push(ord(x.peek())),
