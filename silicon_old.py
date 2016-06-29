@@ -2,7 +2,7 @@ from functools import *
 from commands import *
 import time
 import ascii_lib
-import cp037
+import pprint
 
 class Interpreter:
     grid = 0
@@ -12,7 +12,6 @@ class Interpreter:
     argFunc = ""
     debug = False
     asc = ascii_lib.AsciiArt()
-    cp = cp037.CP037()
 
     def push(self, val):
         self.stack.append(val)
@@ -209,7 +208,7 @@ class Interpreter:
                     if code[i] == '#': break
                 
             else:
-                COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
+                COMMANDS.get(code[i], lambda x:x)(self)
                 
             i += 1
 
