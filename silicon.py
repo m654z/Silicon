@@ -3,6 +3,7 @@ from commands import *
 import time
 import ascii_lib
 import cp037
+import sys
 
 class Interpreter:
     grid = 0
@@ -216,3 +217,7 @@ class Interpreter:
         print(self.peek())
 
 i = Interpreter()
+if sys.argv[1] == '-i':
+    i.run(sys.argv[2])
+else:
+    i.run(open(sys.argv[1]).read())
