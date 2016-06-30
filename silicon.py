@@ -225,7 +225,12 @@ class Interpreter:
         print(self.peek())
 
 i = Interpreter()
-if sys.argv[1] == '-i':
-    i.run(sys.argv[2])
-else:
-    i.run(open(sys.argv[1]).read())
+try:
+    if sys.argv[1] == '-i':
+        i.run(sys.argv[2])
+    else:
+        i.run(open(sys.argv[1]).read())
+
+except IndexError:
+    while 1:
+        i.run(input("> "))

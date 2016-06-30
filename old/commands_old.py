@@ -134,6 +134,7 @@ COMMANDS = {
     '<': lambda x:x.push(is_less(x.pop(), x.pop())),
     '=': lambda x:x.push(is_equal(x.pop(), x.pop())),
     'a': lambda x:x.push("abcdefghijklmnopqrstuvwxyz"),
+    'b': lambda x:x.push(" "),
     'c': lambda x:x.push(math.ceil(x.pop())),
     'd': lambda x:x.push("123567890"),
     'e': lambda x:x.push(eval(x.pop())),
