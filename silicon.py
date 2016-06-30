@@ -12,6 +12,7 @@ class Interpreter:
     function = ""
     argFunc = ""
     debug = False
+    implicitOutput = True
     asc = ascii_lib.AsciiArt()
     cp = cp037.CP037()
 
@@ -56,6 +57,13 @@ class Interpreter:
 
             elif code[i] == ',':
                 pass
+
+            elif code[i] == 'Â':
+                if self.implicitOutput:
+                    self.implicitOutput = False
+
+                else:
+                    self.implicitOutput = True
 
             elif code[i] == '&':
                 arg = ''
