@@ -5,22 +5,22 @@ Silicon is a stack-based code-golfing language.
 Examples
 --------
 
-*Hello, world!*
+**Hello, world!**
 
 `"Hello, world!"`
 
-*Cat*
+**Cat**
 
 `i`
 
-*Truth machine*
+**Truth machine**
 
 `I[o]`
 
-*Reverse input*
+**Reverse input**
 
 `iR`
 
-*Primality check*
+**Primality check**
 
 `IP`
