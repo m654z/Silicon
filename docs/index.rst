@@ -13,6 +13,7 @@ Contents:
    
    intro
    programs
+   ref-arithmetic
 
 
 
