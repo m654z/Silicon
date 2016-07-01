@@ -58,12 +58,21 @@ class Interpreter:
             elif code[i] == ',':
                 pass
 
-            elif code[i] == 'Â':
-                if self.implicitOutput:
-                    self.implicitOutput = False
+            elif code[i] == 'ò':
+                forCode = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == 'ò': break
+                    forCode += code[i]
 
-                else:
-                    self.implicitOutput = True
+                for i in self.peek():
+                    self.run(forCode)
+
+            elif code[i] == 'Â':
+                self.implicitOutput = False
+
+            elif code[i] == '§':
+                self.implicitOutput = True
 
             elif code[i] == '&':
                 arg = ''
@@ -208,21 +217,49 @@ class Interpreter:
                     if code[i] == ':': break
                     ifCode += code[i]
 
-                i = ifCode.split('|')
-                if self.peek() == i[0]:
-                    self.run(i[1])
+                ic = ifCode.split('|')
+                try:
+                    if self.peek() == int(ic[0]):
+                        self.run(ic[1])
+
+                except:
+                    if self.peek() == ic[0]:
+                        self.run(ic[1])
+
+            elif code[i] == '\u00AB':
+                mapCode = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == '\u00BB': break
+                    mapCode += code[i]
+
+                mapCode = 'Â' + mapCode
+                new = []
+                for t in self.peek():
+                    self.push(t)
+                    self.run(mapCode)
+                    new.append(self.pop())
+
+                self.implicitOutput = True
+                self.pop()
+                self.push(new)
                     
             elif code[i] == '#':
                 while i < len(code):
                     i += 1
                     if code[i] == '#': break
+
+            elif code[i] == '\u00B2':
+                i += 1
+                ALT_COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
                 
             else:
                 COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
                 
             i += 1
 
-        print(self.peek())
+        if self.implicitOutput:
+            print(self.peek())
 
 i = Interpreter()
 try:
@@ -231,6 +268,5 @@ try:
     else:
         i.run(open(sys.argv[1]).read())
 
-except IndexError:
-    while 1:
-        i.run(input("> "))
+except:
+    pass

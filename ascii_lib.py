@@ -34,16 +34,19 @@ class AsciiArt:
         """Erase a character."""
         self.grid[x][y] = ''
 
-    def draw_ground(self):
-        """Draw multiple _s at the bottom of the grid."""
-        for i in range(0, 9):
-            self.grid[9][i] == '_'
-
-    def draw_ceil(self):
-        """Draw multiple -s at the top of the grid."""
-        for i in range(0, 9):
-            self.grid[0][i] == '-'
+    def draw_box(self, tx, ty, bx, by, k):
+        """Draw a box."""
+        p = ty
+        p2 = tx
+        if k == 0:
+            self.grid[tx][ty] = '+'
+            self.grid[bx][by] = '+'
+            while self.grid[tx][p-(by-tx)] != '+':
+                self.grid[p2][ty] == '-'
+                p += 1
 
     def output(self):
         """Pretty print the grid."""
         pprint(''.join(self.grid))
+
+a = AsciiArt()

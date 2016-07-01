@@ -1,5 +1,5 @@
 from functools import *
-from itertools import count, islice
+from itertools import *
 from math import sqrt
 import random
 import math
@@ -7,22 +7,56 @@ import base64
 import itertools
 import operator
 import statistics
+import urllib.request
+import re
 try:
     from fractions import gcd
 except ImportError:
     from math import gcd
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    print("BeautifulSoup not installed.")
 
 def add(val1, val2):
-    return val1 + val2
+    if type(val1) is list:
+        return val2.append(val1)
+
+    elif type(val1) is list and type(val2) is list:
+        return val2.extend(val1)
+
+    else:
+        return val2 + val1
 
 def sub(val1, val2):
-    return val1 - val2
+    if type(val1) is str and type(val2) is list:
+        val2.remove(val1)
+
+    elif type(val1) is int and type(val2) is str:
+        return val2[val1:]
+
+    elif type(val1) is int and type(val2) is list:
+        return val2[val1]
+
+    else:
+        return val1 - val2
 
 def mul(val1, val2):
-    return val1 * val2
+    if type(val1) is int and type(val2) is str:
+        return val2 * val1
+
+    elif type(val2) is list:
+        return val2.append(val1)
+
+    else:
+        return val1 * val2
 
 def div(val1, val2):
-    return val1 / val2
+    if type(val1) is int and type(val2) is str:
+        return val2[:val1]
+
+    else:
+        return val1 / val2
 
 def mod(val1, val2):
     return val1 % val2
@@ -96,6 +130,13 @@ def is_equal(n1, n2):
     else:
         return 0
 
+def in_list(l, c):
+    if c in l:
+        return 1
+    
+    else:
+        return 0
+
 def list_sum(l):
     n = 0
     for i in l:
@@ -103,8 +144,26 @@ def list_sum(l):
 
     return n
 
+def join(c, l):
+    l = c.join(l)
+    #l = l[1:]
+    return l
+
 def int_list(l):
     return list(map(int, l))
+
+def split_list(s, l):
+    new = []
+    i = l.index(s)
+    while i < len(l):
+        new.append(l[i])
+        i += 1
+
+    return new
+
+def split_list2(s, l):
+    i = l.index(s)
+    return l[:i]
 
 def read_file(f):
     f = open(f, 'r')
@@ -117,11 +176,17 @@ def write_file(t, f):
     f.write(t)
     f.close()
 
-def hello(n):
-    if n == 0: return "Hello World!"
-    elif n == 1: return "Hello, World!"
-    elif n == 2: return "Hello world!"
-    elif n == 3: return "Hello, world!"
+def get_text(url):
+   html = urllib.request.urlopen(url).read()
+   soup = BeautifulSoup(html, "html.parser")
+   [s.extract() for s in soup(['style', 'script', '[document]',
+                               'head', 'title'])]
+   text = soup.getText()
+   return text
+
+def chunks(l, n):
+    for i in range(0, len(l), n):
+        yield l[i:i+n]
 
 COMMANDS = {
     78: lambda x:x.push(add(x.pop(), x.pop())),
@@ -182,14 +247,18 @@ COMMANDS = {
     231: lambda x:random.shuffle(x.peek()),
     232: lambda x:x.push(x.pop().split(x.pop())),
     233: lambda x:x.push(len(x.peek().encode('utf-8'))),
+    68: lambda x:x.push(math.pi),
+    81: lambda x:x.push(math.e),
+    85: lambda x:x.push((1+5**0.5)/2),
+    69: lambda x:x.push(x.pop().count(x.peek())),
+    84: lambda x:x.push(abs(x.pop()-x.pop())),
+    88: lambda x:x.push(in_list(x.peek(), x.pop())),
     101: lambda x:x.push(str(x.pop()).replace(str(x.pop()), '')),
     113: lambda x:x.push(statistics.mean(x.peek())),
     117: lambda x:x.push(statistics.mode(x.peek())),
     254: lambda x:x.push(list(enumerate(x.pop()))),
     238: lambda x:x.push(statistics.median(x.peek())),
-    100: lambda x:x.push(str(x.pop()) + str(x.pop())),
     116: lambda x:x.push(x.pop().split(',')),
-    120: lambda x:x.push(str(x.pop())*x.pop()),
     237: lambda x:x.push(reduce(operator.mul, x.pop(), 1)),
     253: lambda x:x.push([]),
     98: lambda x:x.push(10),
@@ -207,4 +276,21 @@ COMMANDS = {
     105: lambda x:x.push(~x.peek()),
     239: lambda x:x.push(x.peek() | x.peekc(2)),
     224: lambda x:x.push(list(range(x.peekc(2), x.peek()+1))),
+    156: lambda x:x.push(' '),
+}
+
+ALT_COMMANDS = {
+    115: lambda x:x.push(chunks(x.pop(), 2)),
+    131: lambda x:x.push(list(product(x.pop(), x.pop()))),
+    134: lambda x:x.push(float(x.pop())),
+    145: lambda x:x.push(join(x.pop(), x.pop())),
+    147: lambda x:x.push(x.pop().lower()),
+    149: lambda x:x.push(x.pop().split('\n')),
+    151: lambda x:x.push(x.pop().split(' ')),
+    162: lambda x:x.push(x.pop().swapcase()),
+    163: lambda x:x.push(x.pop().title()),
+    164: lambda x:x.push(x.pop().upper()),
+    166: lambda x:x.push(get_text(x.pop())),
+    167: lambda x:x.push(split_list2(x.pop(), x.pop())),
+    169: lambda x:x.push(split_list(x.pop(), x.pop())),
 }
