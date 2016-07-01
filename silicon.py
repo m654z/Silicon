@@ -33,12 +33,6 @@ class Interpreter:
         self.stack = []
         return s
 
-    def get(self):
-        a = self.pop()
-        b = self.peek()
-        self.push(a)
-        return b
-
     def run_func(self):
         self.run(self.function)
 
@@ -58,6 +52,8 @@ class Interpreter:
             elif code[i] == ',':
                 pass
 
+            # For loop. Warning: buggy
+            # Syntax: òcodeò
             elif code[i] == 'ò':
                 forCode = ''
                 while i < len(code):
@@ -74,6 +70,8 @@ class Interpreter:
             elif code[i] == '§':
                 self.implicitOutput = True
 
+            # Runs a function with arguments. (Argumental function? :P)
+            # Syntax: &arg1|arg2&
             elif code[i] == '&':
                 arg = ''
                 arg2 = ''
@@ -92,6 +90,9 @@ class Interpreter:
             elif code[i] == 'V':
                 self.stack = self.stack[::-1]
 
+            # Defines a function with arguments.
+            # @ will be replaced with arg1 and ? with arg2.
+            # Syntax: ´code´.
             elif code[i] == "´":
                 func = ''
                 while i < len(code):
@@ -103,19 +104,8 @@ class Interpreter:
                 if self.debug == True:
                     print("ArgFunc: " + self.argFunc)
 
-            elif code[i] == 'Ù':
-                forCode = ''
-                while i < len(code):
-                    i += 1
-                    if code[i] == ';': break
-                    forCode += code[i]
 
-                s = list(self.peek())
-                for l in s:
-                    self.push(l)
-                    self.run(forCode)
-                    self.pop()
-
+            # Commands for working with the ASCII art module
             elif code[i] == 'Å':
                 while i < len(code):
                     i += 1
@@ -143,6 +133,7 @@ class Interpreter:
                     elif code[i] == 'C':
                         self.asc.draw_ceil()
 
+            # Pushes everything in between the quotes on to the stack.
             elif code[i] == '"':
                 text = ''
                 while i < len(code):
@@ -152,6 +143,8 @@ class Interpreter:
 
                 self.push(text)
 
+            # Replacement.
+            # Syntax: `replaceThis|withThis`
             elif code[i] == '`':
                 replace = ''
                 while i < len(code):
@@ -162,7 +155,7 @@ class Interpreter:
                 r = replace.split('|')
                 self.push(self.pop().replace(r[0], r[1]))
 
-
+            # Pushes a multi-digit number on to the stack.
             elif code[i] == '_':
                 num = ''
                 while i < len(code):
@@ -172,6 +165,8 @@ class Interpreter:
 
                 self.push(int(num))
 
+            # Anonymous function.
+            # Syntax: {code}
             elif code[i] == '{':
                 func = ''
                 while i < len(code):
@@ -181,6 +176,7 @@ class Interpreter:
 
                 self.function = func
 
+            # If statement, runs only if the top stack value is 1
             elif code[i] == '(':
                 ifCode = ''
                 while i < len(code):
@@ -191,6 +187,7 @@ class Interpreter:
                 if self.peek() == 1:
                     self.run(ifCode)
 
+            # While loop
             elif code[i] == '[':
                 loop = ''
                 while i < len(code):
@@ -210,6 +207,8 @@ class Interpreter:
 
                 self.it = 0
 
+            # If statement.
+            # Syntax: :ifThis|code:
             elif code[i] == ':':
                 ifCode = ''
                 while i < len(code):
@@ -226,6 +225,7 @@ class Interpreter:
                     if self.peek() == ic[0]:
                         self.run(ic[1])
 
+            # Map
             elif code[i] == '\u00AB':
                 mapCode = ''
                 while i < len(code):
@@ -239,6 +239,24 @@ class Interpreter:
                     self.push(t)
                     self.run(mapCode)
                     new.append(self.pop())
+
+                self.implicitOutput = True
+                self.pop()
+                self.push(new)
+
+            # Filter
+            elif code[i] == '\u00A6':
+                i += 1
+                filterFunc = 'Â' + code[i]
+                new = []
+                for t in self.peek():
+                    self.push(t)
+                    self.run(filterFunc)
+                    if self.pop():
+                        new.append(self.pop())
+
+                    else:
+                        self.pop()
 
                 self.implicitOutput = True
                 self.pop()

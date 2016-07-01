@@ -188,6 +188,9 @@ def chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i+n]
 
+def rotate(n, l):
+    return l[n:] + l[:n]
+
 COMMANDS = {
     78: lambda x:x.push(add(x.pop(), x.pop())),
     96: lambda x:x.push(sub(x.pop(), x.pop())),
@@ -283,10 +286,13 @@ ALT_COMMANDS = {
     115: lambda x:x.push(chunks(x.pop(), 2)),
     131: lambda x:x.push(list(product(x.pop(), x.pop()))),
     134: lambda x:x.push(float(x.pop())),
+    137: lambda x:x.push(min(x.peek())),
     145: lambda x:x.push(join(x.pop(), x.pop())),
     147: lambda x:x.push(x.pop().lower()),
+    148: lambda x:x.push(max(x.peek())),
     149: lambda x:x.push(x.pop().split('\n')),
     151: lambda x:x.push(x.pop().split(' ')),
+    153: lambda x:x.push(rotate(x.pop(), x.pop())),
     162: lambda x:x.push(x.pop().swapcase()),
     163: lambda x:x.push(x.pop().title()),
     164: lambda x:x.push(x.pop().upper()),
