@@ -110,6 +110,13 @@ def is_prime(n):
         return 0
 
 def is_greater(n1, n2):
+    if type(n1) == list:
+        if n1[0] > n1[1]:
+            return 1
+
+        else:
+            return 0
+        
     if n1 > n2:
         return 1
 
@@ -117,6 +124,13 @@ def is_greater(n1, n2):
         return 0
 
 def is_less(n1, n2):
+    if type(n1) == list:
+        if n1[0] < n1[1]:
+            return 1
+
+        else:
+            return 0
+        
     if n1 < n2:
         return 1
 
@@ -124,6 +138,13 @@ def is_less(n1, n2):
         return 0
 
 def is_equal(n1, n2):
+    if type(n1) == list:
+        if n1[0] == n1[1]:
+            return 1
+
+        else:
+            return 0
+        
     if n1 == n2:
         return 1
 

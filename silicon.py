@@ -287,4 +287,5 @@ try:
         i.run(open(sys.argv[1]).read())
 
 except:
-    pass
+    while 1:
+        i.run(input('> '))

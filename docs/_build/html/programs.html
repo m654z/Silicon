@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Silicon 0.1 documentation" href="index.html" /> 
+    <link rel="top" title="Silicon 0.1 documentation" href="index.html" />
+    <link rel="prev" title="1. Introduction" href="intro.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -32,6 +33,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="1. Introduction"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Silicon 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -49,36 +53,36 @@
 <p>As you might know, the first program you usually write when learning a new programming language is a program that outputs &#8220;Hello, world!&#8221;
 Let&#8217;s try that out in Silicon!</p>
 <p><code class="docutils literal"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code></p>
-<p>Silicon is a stack-based language, meaning that it operates on a single stack. Everything between the quotes (<cite>&#8221; &#8220;</cite>) are pushed on top of the stack. Output is implicit in Silicon (the top stack item will be outputted), so there is no need for an output command in the above example.</p>
+<p>Silicon is a stack-based language, meaning that it operates on a single stack. Everything between the quotes (<code class="docutils literal"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code>) are pushed on top of the stack. Output is implicit in Silicon (the top stack item will be outputted), so there is no need for an output command in the above example.</p>
 </div>
 <div class="section" id="math">
 <h2>2.2 Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
-<p>Silicon uses postfix notation (expressions like <cite>55+</cite>), so normal expressions like <cite>5+5</cite> are not valid. This is because numbers in code are pushed on the stack, and arithmetical commands operate on the 2nd-top and 3rd-top items.
+<p>Silicon uses postfix notation (expressions like <code class="docutils literal"><span class="pre">55+</span></code>), so normal expressions like <code class="docutils literal"><span class="pre">5+5</span></code> are not valid. This is because numbers in code are pushed on the stack, and arithmetical commands operate on the 2nd-top and 3rd-top items.
 Silicon supports the four main arithmetical operators: addition, subtraction, multiplication, and division, as well as modulo and exponent.</p>
 </div>
 <div class="section" id="input-and-output">
 <h2>2.3 Input and output<a class="headerlink" href="#input-and-output" title="Permalink to this headline">¶</a></h2>
-<p>To get input, there are two commands you can use: <cite>i</cite> and <cite>I</cite>.
-<cite>i</cite> gets input as a string and pushes it on the stack. <cite>I</cite> gets input as an integer and pushes it on the stack.
-<cite>o</cite> outputs the top stack item, but this is usually unneeded, as output in Silicon is implicit.</p>
-<p>A simple cat program (a program that copies its input to its output) is only one byte long: <cite>i</cite>.</p>
+<p>To get input, there are two commands you can use: <code class="docutils literal"><span class="pre">i</span></code> and <code class="docutils literal"><span class="pre">I</span></code>.
+<code class="docutils literal"><span class="pre">i</span></code> gets input as a string and pushes it on the stack. <code class="docutils literal"><span class="pre">I</span></code> gets input as an integer and pushes it on the stack.
+<code class="docutils literal"><span class="pre">o</span></code> outputs the top stack item, but this is usually unneeded, as output in Silicon is implicit.</p>
+<p>A simple cat program (a program that copies its input to its output) is only one byte long: <code class="docutils literal"><span class="pre">i</span></code>.</p>
 </div>
 <div class="section" id="conditional-statements">
 <h2>2.4 Conditional statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
 <p>There are a few conditional operators, which return 1 if the contition is True, and 0 if it&#8217;s False.
-<cite>&lt;</cite> checks if an integer is greater than another one. <cite>&gt;</cite> checks if an integer is less than another. <cite>=</cite> checks if two integers are equal.
-Of course, you can&#8217;t do anything useful with those values without conditional statements. In Silicon, everything between parentheses <cite>()</cite> are run only if the top stack value is 1. If it isn&#8217;t, the code is skipped altogether.
-So, for example the program <cite>ÂII=(&#8220;Equal!&#8221;o)</cite> would check if two number are equal, and output &#8220;Equal!&#8221; if it&#8217;s true. Note the <cite>Â</cite>: it toggles implicit output. If implicit output would be toggled on, and the above program would be run, it would output &#8220;Equal!&#8221; no matter what.</p>
+<code class="docutils literal"><span class="pre">&lt;</span></code> checks if an integer is greater than another one. <code class="docutils literal"><span class="pre">&gt;</span></code> checks if an integer is less than another. <code class="docutils literal"><span class="pre">=</span></code> checks if two integers are equal.
+Of course, you can&#8217;t do anything useful with those values without conditional statements. In Silicon, everything between parentheses <code class="docutils literal"><span class="pre">()</span></code> are run only if the top stack value is 1. If it isn&#8217;t, the code is skipped altogether.
+So, for example the program <code class="docutils literal"><span class="pre">ÂII=(&quot;Equal!&quot;o)</span></code> would check if two number are equal, and output &#8220;Equal!&#8221; if it&#8217;s true. Note the <code class="docutils literal"><span class="pre">Â</span></code>: it toggles implicit output. If implicit output would be toggled on, and the above program would be run, it would output &#8220;Equal!&#8221; no matter what.</p>
 </div>
 <div class="section" id="loops">
 <h2>2.5 Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
-<p>Silicon only has one kind of loop: the while loop. Everything between square brackets <cite>[]</cite> are run while the top stack value is 1.
-For loops, however, can be simulated using while loops, using the syntax <cite>[times|Dcode]</cite>. Everything before the <cite>|</cite> is run once before the actual loop code, so for example <cite>[5|D]</cite> would count down from 5. <cite>D</cite> decrements the top stack value.</p>
+<p>Silicon only has one kind of loop: the while loop. Everything between square brackets <code class="docutils literal"><span class="pre">[]</span></code> are run while the top stack value is 1.
+For loops, however, can be simulated using while loops, using the syntax <code class="docutils literal"><span class="pre">[times|Dcode]</span></code>. Everything before the <code class="docutils literal"><span class="pre">|</span></code> is run once before the actual loop code, so for example <code class="docutils literal"><span class="pre">[5|D]</span></code> would count down from 5. <code class="docutils literal"><span class="pre">D</span></code> decrements the top stack value.</p>
 </div>
 <div class="section" id="functions">
 <h2>2.6 Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<p>There are two kinds of functions: code blocks, and functions with arguments. You can set the value of the code block by putting some code in between the curly braces <cite>{}</cite>. The code block can then be run by using the command <cite>C</cite>.
-Functions with arguments are a bit different. They can be used in the same way as code blocks, but you can also pass arguments to them. For example, the code <cite>´&#8221;&#64;&#8221;o´</cite> takes one argument, and outputs it. They support up to two arguments, and can be run with the syntax <cite>&amp;arg1|arg2&amp;</cite>.</p>
+<p>There are two kinds of functions: code blocks, and functions with arguments. You can set the value of the code block by putting some code in between the curly braces <code class="docutils literal"><span class="pre">{}</span></code>. The code block can then be run by using the command <code class="docutils literal"><span class="pre">C</span></code>.
+Functions with arguments are a bit different. They can be used in the same way as code blocks, but you can also pass arguments to them. For example, the code <code class="docutils literal"><span class="pre">´&quot;&#64;&quot;o´</span></code> takes one argument, and outputs it. They support up to two arguments, and can be run with the syntax <code class="docutils literal"><span class="pre">&amp;arg1|arg2&amp;</span></code>.</p>
 </div>
 </div>
 
@@ -101,6 +105,9 @@ Functions with arguments are a bit different. They can be used in the same way a
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">1. Introduction</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -128,6 +135,9 @@ Functions with arguments are a bit different. They can be used in the same way a
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="1. Introduction"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Silicon 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
