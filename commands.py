@@ -277,6 +277,7 @@ COMMANDS = {
     69: lambda x:x.push(x.pop().count(x.peek())),
     84: lambda x:x.push(abs(x.pop()-x.pop())),
     88: lambda x:x.push(in_list(x.peek(), x.pop())),
+    86: lambda x:x.push([v for s in x.pop() for v in s]),
     101: lambda x:x.push(str(x.pop()).replace(str(x.pop()), '')),
     113: lambda x:x.push(statistics.mean(x.peek())),
     117: lambda x:x.push(statistics.mode(x.peek())),

@@ -195,6 +195,9 @@ class Interpreter:
                     if code[i] == ']': break
                     loop += code[i]
 
+                # I realized this is useless, but I'm not gonna
+                # remove it because reasons. Also, I'm way too
+                # lazy to update the documentation.
                 if '|' in loop:
                     loop = loop.split('|')
                     self.run(loop[0])
@@ -202,8 +205,14 @@ class Interpreter:
                         self.run(loop[1])
 
                 else:
-                    while self.peek() != 0:
-                        self.run(loop)
+                    try:
+                        while self.peek() != 0:
+                            self.run(loop)
+
+                    except IndexError:
+                        self.push(1)
+                        while self.peek() != 0:
+                            self.run(loop)
 
                 self.it = 0
 
@@ -249,8 +258,9 @@ class Interpreter:
                 i += 1
                 filterFunc = 'Â' + code[i]
                 new = []
-                for t in self.peek():
-                    self.push(t)
+                l = self.pop()[::-1]
+                for t in l:
+                    self.push(l.pop())
                     self.run(filterFunc)
                     if self.pop():
                         new.append(self.pop())
@@ -279,13 +289,13 @@ class Interpreter:
         if self.implicitOutput:
             print(self.peek())
 
-i = Interpreter()
+i = Interpreter
 try:
     if sys.argv[1] == '-i':
         i.run(sys.argv[2])
     else:
         i.run(open(sys.argv[1]).read())
 
-except:
+except IndexError:
     while 1:
         i.run(input('> '))
