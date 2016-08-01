@@ -52,58 +52,14 @@ class Interpreter:
             elif code[i] == ',':
                 pass
 
-            # For loop. Warning: buggy
-            # Syntax: òcodeò
-            elif code[i] == 'ò':
-                forCode = ''
-                while i < len(code):
-                    i += 1
-                    if code[i] == 'ò': break
-                    forCode += code[i]
-
-                for i in self.peek():
-                    self.run(forCode)
-
             elif code[i] == 'Â':
                 self.implicitOutput = False
 
             elif code[i] == '§':
                 self.implicitOutput = True
 
-            # Runs a function with arguments. (Argumental function? :P)
-            # Syntax: &arg1|arg2&
-            elif code[i] == '&':
-                arg = ''
-                arg2 = ''
-                while i < len(code): 
-                    i += 1
-                    if code[i] == '&': break
-                    arg += code[i]
-
-                if '|' in arg:
-                    arg = arg.split('|')
-                    arg2 = arg[1]
-                    arg = arg[0]
-
-                self.run(self.argFunc.replace('@', arg).replace('?', arg2))
-
             elif code[i] == 'V':
                 self.stack = self.stack[::-1]
-
-            # Defines a function with arguments.
-            # @ will be replaced with arg1 and ? with arg2.
-            # Syntax: ´code´.
-            elif code[i] == "´":
-                func = ''
-                while i < len(code):
-                    i += 1
-                    if code[i] == "´": break
-                    func += code[i]
-
-                self.argFunc = func
-                if self.debug == True:
-                    print("ArgFunc: " + self.argFunc)
-
 
             # Commands for working with the ASCII art module
             elif code[i] == 'Å':
@@ -195,44 +151,14 @@ class Interpreter:
                     if code[i] == ']': break
                     loop += code[i]
 
-                # I realized this is useless, but I'm not gonna
-                # remove it because reasons. Also, I'm way too
-                # lazy to update the documentation.
-                if '|' in loop:
-                    loop = loop.split('|')
-                    self.run(loop[0])
-                    while self.peek() != 0:
-                        self.run(loop[1])
-
-                else:
-                    try:
-                        while self.peek() != 0:
-                            self.run(loop)
-
-                    except IndexError:
-                        self.push(1)
-                        while self.peek() != 0:
-                            self.run(loop)
-
-                self.it = 0
-
-            # If statement.
-            # Syntax: :ifThis|code:
-            elif code[i] == ':':
-                ifCode = ''
-                while i < len(code):
-                    i += 1
-                    if code[i] == ':': break
-                    ifCode += code[i]
-
-                ic = ifCode.split('|')
                 try:
-                    if self.peek() == int(ic[0]):
-                        self.run(ic[1])
+                    while self.peek() != 0:
+                        self.run(loop)
 
-                except:
-                    if self.peek() == ic[0]:
-                        self.run(ic[1])
+                except IndexError:
+                     self.push(1)
+                     while self.peek() != 0:
+                         self.run(loop)
 
             # Map
             elif code[i] == '\u00AB':
@@ -263,7 +189,8 @@ class Interpreter:
                     self.push(l.pop())
                     self.run(filterFunc)
                     if self.pop():
-                        new.append(self.pop())
+                        self.pop()
+                        new.append(self.peek())
 
                     else:
                         self.pop()
@@ -289,7 +216,7 @@ class Interpreter:
         if self.implicitOutput:
             print(self.peek())
 
-i = Interpreter
+i = Interpreter()
 try:
     if sys.argv[1] == '-i':
         i.run(sys.argv[2])

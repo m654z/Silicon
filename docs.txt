@@ -31,6 +31,27 @@ A	Push the uppercase alphabet
 Ô	Push the number 100
 Û	Push the number 255
 
+Alt. Commands
+-------------
+
+²	Insert alt. command after this
+Ë	Splits string into chunks of two
+c	Product as a list
+f	Integer to float
+i	Minimum of a list
+j	Joins a list at a certain character
+l	Lowercase
+m	Maximum of a list
+n	Split at newlines
+p	Split at spaces
+r	Rotate a list
+s	Swapcase
+t	Titlecase
+u	Uppercase
+w	Get all text from a website
+x	Split a string at a substring, push first part
+y	Split a string at a substring, push second part
+
 Misc. Commands
 --------------
 
@@ -89,6 +110,18 @@ Z	Gets the length of a UTF-8 encoded string
 Ã	AND
 Ñ	NOT
 Õ	OR
-\	Pushes a list with number in the range n-n
+\	Pushes a list with numbers in the range n-n
+æ	Pushes a space
 ¨	Sleeps for one second
 ,	Placeholder, does nothing
+
+General
+-------
+
+""	Everything between quotes are pushed. 	Syntax: "text"
+``	Replacement.				Syntax: `this|that`
+__	Pushes a multi-digit number.		Syntax: _42_
+{}	Anonymous function.			Syntax: {code}
+()	If statement.				Syntax: (code)
+[]	While loop.				Syntax: [code]
+«»	Map.					Syntax: «code»
