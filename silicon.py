@@ -190,7 +190,7 @@ class Interpreter:
                     self.run(filterFunc)
                     if self.pop():
                         self.pop()
-                        new.append(self.peek())
+                        new.append(self.peekc(2))
 
                     else:
                         self.pop()

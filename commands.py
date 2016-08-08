@@ -186,6 +186,10 @@ def split_list2(s, l):
     i = l.index(s)
     return l[:i]
 
+# From a SO answer. Thanks sweeneyrod!
+def chunks(l, s):
+    return (s[0+i:l+i] for i in range(0, len(s), l))
+
 def read_file(f):
     f = open(f, 'r')
     text = f.read()
@@ -204,10 +208,6 @@ def get_text(url):
                                'head', 'title'])]
    text = soup.getText()
    return text
-
-def chunks(l, n):
-    for i in range(0, len(l), n):
-        yield l[i:i+n]
 
 def rotate(n, l):
     return l[n:] + l[:n]
@@ -257,7 +257,7 @@ COMMANDS = {
     201: lambda x:x.push(int(input())),
     209: lambda x:x.push(x.pop().append(x.pop())),
     210: lambda x:x.push(gcd(x.pop(), x.pop())),
-    211: lambda x:x.push(x.peek().length()),
+    211: lambda x:x.push(len(x.peek())),
     212: lambda x:x.push(list_sum(x.pop())),
     213: lambda x:x.push(int(x.pop())+1),
     214: lambda x:x.push(ord(x.peek())),
@@ -285,12 +285,12 @@ COMMANDS = {
     238: lambda x:x.push(statistics.median(x.peek())),
     116: lambda x:x.push(x.pop().split(',')),
     237: lambda x:x.push(reduce(operator.mul, x.pop(), 1)),
-    #253: lambda x:x.push([]),
-    #98: lambda x:x.push(10),
+    253: lambda x:x.push([]),
+    98: lambda x:x.push(10),
     114: lambda x:x.peek().extend(x.pop()),
     118: lambda x:x.peek().insert(x.peekc(2), x.pop()),
-    #235: lambda x:x.push(100),
-    #251: lambda x:x.push(255),
+    235: lambda x:x.push(100),
+    251: lambda x:x.push(255),
     99: lambda x:x.push(x.peekc(2)),
     115: lambda x:x.push(x.peek() ^ x.peekc(2)),
     119: lambda x:x.push(x.peek() << x.peekc(2)),
@@ -301,21 +301,15 @@ COMMANDS = {
     105: lambda x:x.push(~x.peek()),
     239: lambda x:x.push(x.peek() | x.peekc(2)),
     224: lambda x:x.push(list(range(x.peekc(2), x.peek()+1))),
-    #156: lambda x:x.push(' '),
+    156: lambda x:x.push(' '),
     68: lambda x:x.push(rotate(x.pop(), 1)),
     69: lambda x:x.push(rotate(x.pop(), -1)),
-
-    16: lambda x:x.push(10),
-    17: lambda x:x.push(11),
-    18: lambda x:x.push(12),
-    19: lambda x:x.push(50),
-    20: lambda x:x.push(100),
-    21: lambda x:x.push(500),
-    22: lambda x:x.push(1000),
-
-    1: lambda x:x.push([]),
-    2: lambda x:x.push(255),
-    3: lambda x:x.push(' '),
+    67: lambda x:print(' '.join(x)),
+    66: lambda x:print(''.join(x)),
+    70: lambda x:x.push(x.pop()*int(input())),
+    71: lambda x:x.push(chunks(x.pop(), x.pop())),
+    81: lambda x:x.push(' '.join(x.pop())),
+    82: lambda x:x.push('\n'.join(x.pop())),
 }
 
 ALT_COMMANDS = {
