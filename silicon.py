@@ -52,7 +52,7 @@ class Interpreter:
             elif code[i] == ',':
                 pass
 
-            elif code[i] == 'Â':
+            elif code[i] == '½':
                 self.implicitOutput = False
 
             elif code[i] == '§':
@@ -204,6 +204,35 @@ class Interpreter:
                     i += 1
                     if code[i] == '#': break
 
+            elif code[i] == '|':
+                m = False
+                forcode = ''
+                fin = []
+                while i < len(code):
+                    i += 1
+                    if code[i] == '|': break
+                    forcode += code[i]
+
+                if "'" in forcode:
+                    m = True
+                    after = forcode.split("'")[1]
+                    forcode = forcode[0]
+
+                lst = self.pop()
+                temp = self.stack
+                self.stack = []
+                for i in lst:
+                    self.push(i)
+                    self.run(forcode)
+
+                fin = self.stack
+
+                if m == True:
+                    self.run(after)
+
+                self.stack = temp
+                self.push(fin)
+                
             elif code[i] == '\u00B2':
                 i += 1
                 ALT_COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
@@ -217,12 +246,12 @@ class Interpreter:
             print(self.peek())
 
 i = Interpreter()
-try:
-    if sys.argv[1] == '-i':
-        i.run(sys.argv[2])
-    else:
-        i.run(open(sys.argv[1]).read())
+#try:
+#    if sys.argv[1] == '-i':
+#        i.run(sys.argv[2])
+#    else:
+#        i.run(open(sys.argv[1]).read())
 
-except IndexError:
-    while 1:
-        i.run(input('> '))
+#except:
+while 1:
+    i.run(input('> '))
