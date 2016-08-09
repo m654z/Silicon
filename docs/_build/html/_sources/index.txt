@@ -1,5 +1,5 @@
 .. Silicon documentation master file, created by
-   sphinx-quickstart on Thu Jun 30 13:33:13 2016.
+   sphinx-quickstart on Tue Aug  9 17:39:52 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -11,9 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
-   intro
-   programs
-   ref-arithmetic
+   basics
+   control
+   string
 
 
 

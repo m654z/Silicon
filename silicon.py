@@ -232,6 +232,11 @@ class Interpreter:
 
                 self.stack = temp
                 self.push(fin)
+
+            elif code[i] == '\00A1':
+                i += 1
+                self.push(code[i])
+                i += 
                 
             elif code[i] == '\u00B2':
                 i += 1

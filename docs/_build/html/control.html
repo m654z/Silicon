@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Control Flow &mdash; Silicon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Silicon 1.0 documentation" href="index.html" />
+    <link rel="next" title="Strings" href="string.html" />
+    <link rel="prev" title="Basics" href="basics.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="control-flow">
+<h1>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="if-statements">
+<h2>If statements<a class="headerlink" href="#if-statements" title="Permalink to this headline">¶</a></h2>
+<p>Silicon&#8217;s if statements check if the top stack item is 1 or not. If it is, it&#8217;ll run the code.
+To create an if statement, enclose the code in parentheses:</p>
+<p>::(&#8220;Hi there&#8221;)</p>
+</div>
+<div class="section" id="comparison-operators">
+<h2>Comparison operators<a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h2>
+<p>Comparison operators compare the two top stack items.</p>
+<ul class="simple">
+<li><cite>=</cite> Equal to</li>
+<li><cite>&lt;</cite> Less than</li>
+<li><a href="#id1"><span class="problematic" id="id2">`</span></a>&gt;´ Greater than</li>
+</ul>
+<p>Comparison operators can be easily combined with if statements</p>
+</div>
+<div class="section" id="for-loops">
+<h2>For loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h2>
+<p>Like in Python, Silicon&#8217;s for loops operate on an iterator.
+A for loop&#8217;s syntax is:</p>
+<p>::<a href="#id5"><span class="problematic" id="id6">|code|</span></a></p>
+<div class="section" id="the-range-builtin">
+<h3>The range() builtin<a class="headerlink" href="#the-range-builtin" title="Permalink to this headline">¶</a></h3>
+<p>To make a list with the numbers in a certain range, use the <a href="#id3"><span class="problematic" id="id4">`</span></a>` command as so:</p>
+<p>::<a href="#id7"><span class="problematic" id="id8">1_1000_</span></a></p>
+<p>The above example pushes a list with the numbers from 1 to 1000.</p>
+<p>For (:P) example, here is a snippet that calculates the square roots of all numbers from 1 to 100:</p>
+<p>::<a href="#id9"><span class="problematic" id="id10">1_100_</span></a>|q|</p>
+</div>
+</div>
+<div class="section" id="while-loops">
+<h2>While loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h2>
+<p>While loops run while the top stack item is 1. To make a while loop, enclose the code in square brackets.</p>
+<p>A truth machine using a while loop:</p>
+<p>::i[]</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Control Flow</a><ul>
+<li><a class="reference internal" href="#if-statements">If statements</a></li>
+<li><a class="reference internal" href="#comparison-operators">Comparison operators</a></li>
+<li><a class="reference internal" href="#for-loops">For loops</a><ul>
+<li><a class="reference internal" href="#the-range-builtin">The range() builtin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#while-loops">While loops</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="basics.html" title="previous chapter">Basics</a></li>
+      <li>Next: <a href="string.html" title="next chapter">Strings</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/control.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, m654.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/control.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

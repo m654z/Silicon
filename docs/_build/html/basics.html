@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Basics &mdash; Silicon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Silicon 1.0 documentation" href="index.html" />
+    <link rel="next" title="Control Flow" href="control.html" />
+    <link rel="prev" title="Welcome to Silicon’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="basics">
+<h1>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-stack">
+<h2>The stack<a class="headerlink" href="#the-stack" title="Permalink to this headline">¶</a></h2>
+<p>Silicon is a stack-based language, meaning that it operates on a single stack. Items can be pushed and popped from the stack.</p>
+<div class="section" id="pushing-strings">
+<h3>Pushing strings<a class="headerlink" href="#pushing-strings" title="Permalink to this headline">¶</a></h3>
+<p>To push a string, enclose it in quotes and it will be automatically pushed on to the stack.</p>
+<p>::&#8221;Hello, World!&#8221;</p>
+</div>
+<div class="section" id="pushing-integers">
+<h3>Pushing integers<a class="headerlink" href="#pushing-integers" title="Permalink to this headline">¶</a></h3>
+<p>To push a single-digit integer, just type the number.</p>
+<p>::4</p>
+<p>To push a multi-digit integer, enclose it in underscores.</p>
+<p>::_23_</p>
+</div>
+<div class="section" id="popping-items">
+<h3>Popping items<a class="headerlink" href="#popping-items" title="Permalink to this headline">¶</a></h3>
+<p>To pop the topmost stack item, removing it, use the command <cite>p</cite>.</p>
+<p>::&#8221;Hello!&#8221;p?</p>
+</div>
+<div class="section" id="duplicating-items">
+<h3>Duplicating items<a class="headerlink" href="#duplicating-items" title="Permalink to this headline">¶</a></h3>
+<p>To duplicate the top stack item, use the command <cite>U</cite>.</p>
+<p>::&#8221;This will be duplicated&#8221;U</p>
+</div>
+</div>
+<div class="section" id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Permalink to this headline">¶</a></h2>
+<p>To get input, use the <cite>i</cite> command:</p>
+<p>::&#8221;Hello, what is your name?&#8221;i</p>
+<p>To get input and convert it to an integer, you can use the command <cite>I</cite>:</p>
+<p>::&#8221;What is 2+2?&#8221;I</p>
+<p>Output in Silicon is implicit, meaning the top stack item will be displayed once the program has finished running. (There is also a manual output command, <cite>o</cite>)</p>
+<p>Here is a very simple cat program:</p>
+<p>::i</p>
+<p>If needed, implicit output can be toggled on and off with the commands <cite>?</cite> and <cite>?</cite>, respectively.</p>
+</div>
+<div class="section" id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h2>
+<p>Silicon uses prefix notations, as the integers have to be pushed onto the stack before using an operator.</p>
+<p>::_38_4+</p>
+<p>::_44_2-</p>
+<p>::69*</p>
+<p>::_84_2/</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Basics</a><ul>
+<li><a class="reference internal" href="#the-stack">The stack</a><ul>
+<li><a class="reference internal" href="#pushing-strings">Pushing strings</a></li>
+<li><a class="reference internal" href="#pushing-integers">Pushing integers</a></li>
+<li><a class="reference internal" href="#popping-items">Popping items</a></li>
+<li><a class="reference internal" href="#duplicating-items">Duplicating items</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Silicon&#8217;s documentation!</a></li>
+      <li>Next: <a href="control.html" title="next chapter">Control Flow</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/basics.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, m654.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/basics.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
