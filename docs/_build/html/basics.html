@@ -48,44 +48,44 @@
 <div class="section" id="pushing-strings">
 <h3>Pushing strings<a class="headerlink" href="#pushing-strings" title="Permalink to this headline">¶</a></h3>
 <p>To push a string, enclose it in quotes and it will be automatically pushed on to the stack.</p>
-<p>::&#8221;Hello, World!&#8221;</p>
+<p><cite>&#8220;Hello, World!&#8221;</cite></p>
 </div>
 <div class="section" id="pushing-integers">
 <h3>Pushing integers<a class="headerlink" href="#pushing-integers" title="Permalink to this headline">¶</a></h3>
 <p>To push a single-digit integer, just type the number.</p>
-<p>::4</p>
+<p><cite>4</cite></p>
 <p>To push a multi-digit integer, enclose it in underscores.</p>
-<p>::_23_</p>
+<p><cite>_23_</cite></p>
 </div>
 <div class="section" id="popping-items">
 <h3>Popping items<a class="headerlink" href="#popping-items" title="Permalink to this headline">¶</a></h3>
 <p>To pop the topmost stack item, removing it, use the command <cite>p</cite>.</p>
-<p>::&#8221;Hello!&#8221;p?</p>
+<p><cite>&#8220;Hello!&#8221;p</cite></p>
 </div>
 <div class="section" id="duplicating-items">
 <h3>Duplicating items<a class="headerlink" href="#duplicating-items" title="Permalink to this headline">¶</a></h3>
 <p>To duplicate the top stack item, use the command <cite>U</cite>.</p>
-<p>::&#8221;This will be duplicated&#8221;U</p>
+<p><cite>&#8220;This will be duplicated&#8221;U</cite></p>
 </div>
 </div>
 <div class="section" id="input-and-output">
 <h2>Input and output<a class="headerlink" href="#input-and-output" title="Permalink to this headline">¶</a></h2>
 <p>To get input, use the <cite>i</cite> command:</p>
-<p>::&#8221;Hello, what is your name?&#8221;i</p>
+<p><cite>&#8220;Hello, what is your name?&#8221;i</cite></p>
 <p>To get input and convert it to an integer, you can use the command <cite>I</cite>:</p>
-<p>::&#8221;What is 2+2?&#8221;I</p>
+<p><cite>&#8220;What is 2+2?&#8221;I</cite></p>
 <p>Output in Silicon is implicit, meaning the top stack item will be displayed once the program has finished running. (There is also a manual output command, <cite>o</cite>)</p>
 <p>Here is a very simple cat program:</p>
-<p>::i</p>
+<p><cite>i</cite></p>
 <p>If needed, implicit output can be toggled on and off with the commands <cite>?</cite> and <cite>?</cite>, respectively.</p>
 </div>
 <div class="section" id="arithmetic">
 <h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h2>
 <p>Silicon uses prefix notations, as the integers have to be pushed onto the stack before using an operator.</p>
-<p>::_38_4+</p>
-<p>::_44_2-</p>
-<p>::69*</p>
-<p>::_84_2/</p>
+<p><cite>_38_4+</cite></p>
+<p><cite>_44_2-</cite></p>
+<p><cite>69*</cite></p>
+<p><cite>_84_2/</cite></p>
 </div>
 </div>
 

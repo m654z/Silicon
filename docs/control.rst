@@ -7,7 +7,7 @@ If statements
 Silicon's if statements check if the top stack item is 1 or not. If it is, it'll run the code.
 To create an if statement, enclose the code in parentheses:
 
-::("Hi there")
+`("Hi there")`
 
 Comparison operators
 --------------------
@@ -26,20 +26,20 @@ For loops
 Like in Python, Silicon's for loops operate on an iterator.
 A for loop's syntax is:
 
-::|code|
+`|code|`
 
 The range() builtin
 ~~~~~~~~~~~~~~~~~~~
 
 To make a list with the numbers in a certain range, use the `\` command as so:
 
-::1_1000_\
+`1_1000_\`
 
 The above example pushes a list with the numbers from 1 to 1000.
 
 For (:P) example, here is a snippet that calculates the square roots of all numbers from 1 to 100:
 
-::1_100_\|q|
+`1_100_\|q|`
 
 While loops
 -----------
@@ -48,4 +48,4 @@ While loops run while the top stack item is 1. To make a while loop, enclose the
 
 A truth machine using a while loop:
 
-::i[]
+`i[]`

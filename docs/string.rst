@@ -6,7 +6,7 @@ Pushing strings
 
 To push a string onto the stack, enclose it in quotes.
 
-::"Hello, World!"
+`"Hello, World!"`
 
 String manipulation
 -------------------
@@ -26,11 +26,11 @@ Replacement
 
 To replace a substring with another, use the following syntax:
 
-::`replaceThis|withThis`
+`(backtick)replaceThis|withThis(backtick)`
 
 For example:
 
-::`cat|dog`
+`(bt)cat|dog(bt)`
 
 Converting strings to lists
 ---------------------------
