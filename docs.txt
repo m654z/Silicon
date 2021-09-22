@@ -1,4 +1,4 @@
-Arithmetical and Math-related
+Arithmetic
 -----------------------------
 
 +	Adds two numbers together
@@ -8,8 +8,13 @@ Arithmetical and Math-related
 m	Gets the modulo of two number
 ^	Calculates the exponent of two numbers
 !	Calculates the factorial of a number
+c	Round a number to the ceiling
+f	Round a number to the floor
 q	Calculate the square root of a number
 s	Square a number
+D	Decrements a number
+é	Absolute value
+Ç	Convert integer to float
 
 Comparison
 ----------
@@ -30,6 +35,12 @@ A	Push the uppercase alphabet
 Â	Push the number 10
 Ô	Push the number 100
 Û	Push the number 255
+\	Pushes a list with numbers in the range n-n
+æ	Pushes a space
+à	Push pi
+è	Push e
+ì	Push phi
+@	Push newline
 
 Alt. Commands
 -------------
@@ -52,66 +63,101 @@ w	Get all text from a website
 x	Split a string at a substring, push first part
 y	Split a string at a substring, push second part
 
-Misc. Commands
---------------
-
-c	Round a number to the ceiling
+Strings
+-------
 e	Evaluate a string as Python code
-f	Round a number to the floor
 h	Get the ASCII character of a value
-i	Get input
-j	Join a list
-k	Get a specific list item
 l	Make a string lowercase
 n	Converts a string to an integer
-o	Outputs the top stack item
-p	Pops the top item from the stack
-r	Get a random number in the range 0-100
-t	Checks what type of value the item is
 u	Makes a string uppercase
-w	Reads from a file
 y	Gets the length of a string or list
 z	Encodes a string using ROT-n
 B	Encodes a string using Base64
-C	Runs the function
-D	Decrements a number
 E	Evaluate a string as Silicon code
-F	Get the nth Fibonacci number
-G	Pop an item from a list
-K	Greatest Common Divisor
-M	Get the sum of all list items
-N	Increment a number
-O	Get the ASCII value of a character
-P	Checks if a number is a prime
-Q	Sorts a list
+L	Get length of string
 R	Reverses a string or list
 S	Turns a string into a list
-T	Converts all list items to integers
+Y	Split a string by another string
+Z	Gets the length of a UTF-8 encoded string
+á	Count occurrences of string in another string
+î	Split string into letters
+ô	Remove all non-letters
+Á	Removes certain characters in a string
+À	Concatenates two string
+È	Splits a string at commas
+ö	Remove all non-digits
+å	Divide string into chunks of n
+?	Swapcase
+:	Uppercase
+'	Lowercase
+Ø	Titlecase
+
+Input
+-----
+i	Get input
+I	Input as integer
+ã	Multiply integer by input
+
+Output and Stack Management
+---------------------------
+o	Outputs the top stack item
+p	Pops the top item from the stack
 U	Duplicates a value
 V	Reverses the stack
-W	Writes to a file
+Ä	Push the 2nd-top stack item
+Ö	Push the 3rd-top stack item
+
+Lists
+--------------
+b	Join a list by a newline
+j	Join a list
+k	Get a specific list item
+G	Pop an item from a list
+M	Get the sum of all list items
+Q	Sorts a list
+T	Converts all list items to integers
 X	Shuffles a list
-Z	Gets the length of a UTF-8 encoded string
-Á	Removes certain characters in a string
+ì	Check if item is in list
 É	Gets the mean of a list
 Í	Gets the mode of a list
 Ó	Gets the median of a list
-À	Concatenates two string
-È	Splits a string at commas
-Ì	Concatenate a string with itself n times
+Ú	Enumerate list
 Ò	Get the product of a list
+Ì	Join a list by a string
 Ê	Extends a list with another one
 Î	Inserts a list item at a certain index
-Ä	Push the 2nd-top stack item
+ò	Split a string at a substring, push first part
+ó	Split a string at a substring, push second part
+ù	Get maximum
+ä	Join stack divided by spaces
+ü	Get minimum
+â	Join stack
+ç	Convert list to string
+ß	Check if list contains item
+&	Push reversed item to list
+;	Shift a list by n
+%	Join a list by a string
+
+Miscellanious
+-------------
+r	Get a random number in the range 0-100
+~	Get a random number in the range 0-n
+t	Checks what type of value the item is
+w	Reads from a file
+C	Runs the function
+F	Get the nth Fibonacci number
+K	Greatest Common Divisor
+N	Increment a number
+O	Get the ASCII value of a character
+P	Checks if a number is a prime
+W	Writes to a file
 Ë	XOR
 Ï	Shift left
-Ö	Push the 3rd-top stack item
 Ü	Shift right
 Ã	AND
 Ñ	NOT
 Õ	OR
-\	Pushes a list with numbers in the range n-n
-æ	Pushes a space
+$	Return product of two items as a list
 ¨	Sleeps for one second
 ,	Placeholder, does nothing
 

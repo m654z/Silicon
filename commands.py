@@ -8,6 +8,7 @@ import itertools
 import operator
 import statistics
 import urllib.request
+import string
 import re
 try:
     from fractions import gcd
@@ -18,12 +19,18 @@ try:
 except ImportError:
     print("BeautifulSoup not installed.")
 
+del1 = ''.join(c for c in map(chr, range(256)) if not c in string.ascii_letters)
+del2 = ''.join(c for c in map(chr, range(256)) if not c.isdigit())
+
+def not_implemented_error():
+    return "Command not implemented yet."
+
 def add(val1, val2):
-    if type(val1) is list:
-        return val2.append(val1)
+    if type(val2) is list:
+        val2.append(val1)
 
     elif type(val1) is list and type(val2) is list:
-        return val2.extend(val1)
+        val2.extend(val1)
 
     else:
         return val2 + val1
@@ -151,6 +158,12 @@ def is_equal(n1, n2):
     else:
         return 0
 
+def contains(s1, s2):
+    if s1 in s2:
+        return 1
+    else:
+        return 0
+
 def in_list(l, c):
     if c in l:
         return 1
@@ -209,7 +222,15 @@ def get_text(url):
    text = soup.getText()
    return text
 
-def rotate(n, l):
+def translate(table, text):
+    p = re.compile('|'.join(table.keys()))
+    return p.sub(lambda x: table[x.group()], text)
+
+def list_to_str(lst):
+    l = [str(n) for n in lst]
+    return ''.join(l)
+	
+def rotate(l, n):
     return l[n:] + l[:n]
 
 COMMANDS = {
@@ -217,7 +238,7 @@ COMMANDS = {
     96: lambda x:x.push(sub(x.pop(), x.pop())),
     92: lambda x:x.push(mul(x.pop(), x.pop())),
     97: lambda x:x.push(div(x.pop(), x.pop())),
-    176: lambda x:x.push(exp(x.pop(), x.pop())),
+    95: lambda x:x.push(exp(x.pop(), x.pop())),
     90: lambda x:x.push(math.factorial(x.pop())),
     110: lambda x:x.push(is_greater(x.pop(), x.pop())),
     76: lambda x:x.push(is_less(x.pop(), x.pop())),
@@ -255,7 +276,7 @@ COMMANDS = {
     199: lambda x:x.push(x.peek().pop()),
     200: lambda x:x.push(int(x.pop())/2),
     201: lambda x:x.push(int(input())),
-    209: lambda x:x.push(x.pop().append(x.pop())),
+    209: lambda x:x.push(x.pop())().append(x.pop()),
     210: lambda x:x.push(gcd(x.pop(), x.pop())),
     211: lambda x:x.push(len(x.peek())),
     212: lambda x:x.push(list_sum(x.pop())),
@@ -272,10 +293,10 @@ COMMANDS = {
     232: lambda x:x.push(x.pop().split(x.pop())),
     233: lambda x:x.push(len(x.peek().encode('utf-8'))),
     68: lambda x:x.push(math.pi),
-    81: lambda x:x.push(math.e),
-    85: lambda x:x.push((1+5**0.5)/2),
+    84: lambda x:x.push(math.e),
+    88: lambda x:x.push((1+5**0.5)/2),
     69: lambda x:x.push(x.pop().count(x.peek())),
-    84: lambda x:x.push(abs(x.pop()-x.pop())),
+    81: lambda x:x.push(abs(x.pop()-x.pop())),
     88: lambda x:x.push(in_list(x.peek(), x.pop())),
     86: lambda x:x.push([v for s in x.pop() for v in s]),
     101: lambda x:x.push(str(x.pop()).replace(str(x.pop()), '')),
@@ -295,38 +316,87 @@ COMMANDS = {
     115: lambda x:x.push(x.peek() ^ x.peekc(2)),
     119: lambda x:x.push(x.peek() << x.peekc(2)),
     236: lambda x:x.push(x.peekc(3)),
-    223: lambda x:x.push(list(c*-~i for i,c in x.pop())),
+    #223: lambda x:x.push(list(c*-~i for i,c in x.pop())),
     252: lambda x:x.push(x.peek() >> x.peekc(2)),
     102: lambda x:x.push(x.peek() & x.peekc(2)),
     105: lambda x:x.push(~x.peek()),
     239: lambda x:x.push(x.peek() | x.peekc(2)),
     224: lambda x:x.push(list(range(x.peekc(2), x.peek()+1))),
     156: lambda x:x.push(' '),
-    68: lambda x:x.push(rotate(x.pop(), 1)),
-    69: lambda x:x.push(rotate(x.pop(), -1)),
     67: lambda x:print(' '.join(x.stack)),
     66: lambda x:print(''.join(x.stack)),
     70: lambda x:x.push(x.pop()*int(input())),
     71: lambda x:x.push(chunks(x.pop(), x.pop())),
-    81: lambda x:x.push(' '.join(x.pop())),
+    120: lambda x:x.push(' '.join(x.pop())),
     82: lambda x:x.push('\n'.join(x.pop())),
+    203: lambda x:x.push(x.pop().translate(None, del1)),
+    204: lambda x:x.push(x.pop().translate(None, del2)),
+    73: lambda x:x.push(list_to_str(x.pop())),
+    89: lambda x:x.push(contains(x.peek(), x.peekx(2))),
+    80: lambda x:x.push(x.pop()[-x.pop():]),
+    91: lambda x:x.push(list(product(x.pop(), x.pop()))),
+    94: lambda x:x.push(rotate(x.pop(), x.pop())),
+    104: lambda x:x.push(float(x.pop())),
+    108: lambda x:x.push(join(x.pop(), x.pop())),
+    111: lambda x:x.push(x.pop().swapcase()),
+    112: lambda x:x.push(''.join(list(x.pop())[1:])),
+    122:lambda x:x.push(x.pop().upper()),
+    124: lambda x:x.push('\n'),
+    125: lambda x:x.push(x.pop().lower()),
+    128: lambda x:x.push(x.pop().title()),
+    140: not_implemented_error(),
+    141: not_implemented_error(),
+    142: not_implemented_error(),
+    143: not_implemented_error(),
+    144: lambda x:x.push(dict(zip(x.pop(), x.pop()))),
+    154: lambda x:x.push(x.peek()[0]),
+    155: lambda x:x.push(x.peek()[-1]),
+    157: not_implemented_error(),
+    158: not_implemented_error(),
+    159: lambda x:x.push(str(x.pop())),
+    160: not_implemented_error(),
+    161: lambda x:x.push(random.randint(0, x.pop())),
+    172: not_implemented_error(),
+    173: not_implemented_error(),
+    174: not_implemented_error(),
+    175: not_implemented_error(),
+    177: not_implemented_error(),
+    178: not_implemented_error(),
+    179: not_implemented_error(),
+    180: not_implemented_error(),
+    182: not_implemented_error(),
+    183: not_implemented_error(),
+    185: not_implemented_error(),
+    188: not_implemented_error(),
+    190: not_implemented_error(),
+    191: not_implemented_error(),
+    205: lambda x:x.push(split_list2(x.pop(), x.pop())),
+    206: lambda x:x.push(split_list(x.pop(), x.pop())),
+    207: not_implemented_error(),
+    218: not_implemented_error(),
+    219: not_implemented_error(),
+    220: lambda x:x.push(min(x.peek())),
+    221: lambda x:x.push(max(x.peek())),
+    222: not_implemented_error(),
+    225: not_implemented_error(),
+    250: not_implemented_error(),
 }
 
 ALT_COMMANDS = {
-    115: lambda x:x.push(chunks(x.pop(), 2)),
-    131: lambda x:x.push(list(product(x.pop(), x.pop()))),
-    134: lambda x:x.push(float(x.pop())),
-    137: lambda x:x.push(min(x.peek())),
-    145: lambda x:x.push(join(x.pop(), x.pop())),
-    147: lambda x:x.push(x.pop().lower()),
-    148: lambda x:x.push(max(x.peek())),
-    149: lambda x:x.push(x.pop().split('\n')),
-    151: lambda x:x.push(x.pop().split(' ')),
-    153: lambda x:x.push(rotate(x.pop(), x.pop())),
-    162: lambda x:x.push(x.pop().swapcase()),
-    163: lambda x:x.push(x.pop().title()),
-    164: lambda x:x.push(x.pop().upper()),
-    166: lambda x:x.push(get_text(x.pop())),
-    167: lambda x:x.push(split_list2(x.pop(), x.pop())),
-    169: lambda x:x.push(split_list(x.pop(), x.pop())),
+    #115: lambda x:x.push(chunks(x.pop(), 2)),
+    #131: lambda x:x.push(list(product(x.pop(), x.pop()))),
+    #134: lambda x:x.push(float(x.pop())),
+    #137: lambda x:x.push(min(x.peek())),
+    #145: lambda x:x.push(join(x.pop(), x.pop())),
+    #147: lambda x:x.push(x.pop().lower()),
+    #148: lambda x:x.push(max(x.peek())),
+    #149: lambda x:x.push(x.pop().split('\n')),
+    #151: lambda x:x.push(x.pop().split(' ')),
+    #153: lambda x:x.push(rotate(x.pop(), x.pop())),
+    #162: lambda x:x.push(x.pop().swapcase()),
+    #163: lambda x:x.push(x.pop().title()),
+    #164: lambda x:x.push(x.pop().upper()),
+    #166: lambda x:x.push(get_text(x.pop())),
+    #167: lambda x:x.push(split_list2(x.pop(), x.pop())),
+    #169: lambda x:x.push(split_list(x.pop(), x.pop())),
 }

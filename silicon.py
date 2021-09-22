@@ -168,7 +168,7 @@ class Interpreter:
                     if code[i] == '\u00BB': break
                     mapCode += code[i]
 
-                mapCode = 'Â' + mapCode
+                #mapCode = 'Â' + mapCode
                 new = []
                 for t in self.peek():
                     self.push(t)
@@ -182,7 +182,8 @@ class Interpreter:
             # Filter
             elif code[i] == '\u00A6':
                 i += 1
-                filterFunc = 'Â' + code[i]
+                #filterFunc = 'Â' + code[i]
+                filterFunc = code[i]
                 new = []
                 l = self.pop()[::-1]
                 for t in l:
@@ -232,15 +233,10 @@ class Interpreter:
 
                 self.stack = temp
                 self.push(fin)
-
-            elif code[i] == '\00A1':
-                i += 1
-                self.push(code[i])
-                i += 
                 
-            elif code[i] == '\u00B2':
-                i += 1
-                ALT_COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
+            #elif code[i] == '\u00B2':
+            #    i += 1
+            #    ALT_COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
                 
             else:
                 COMMANDS.get(self.cp.ord(code[i]), lambda x: x)(self)
