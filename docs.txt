@@ -24,6 +24,7 @@ Comparison commands push 0 if the answer is false, and 1 if it's true.
 <	Greater than
 >	Less than
 =	Equal to
+,	Invert (0->1, 1->0)
 
 Pre-initialized Variables
 -------------------------

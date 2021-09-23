@@ -12,7 +12,6 @@ class Interpreter:
     argFunc = ""
     debug = True
     implicitOutput = True
-    asc = ascii_lib.AsciiArt()
     cp = cp037.CP037()
 
     def push(self, val):
