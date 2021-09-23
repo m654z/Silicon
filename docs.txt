@@ -13,8 +13,8 @@ f	Round a number to the floor
 q	Calculate the square root of a number
 s	Square a number
 D	Decrements a number
-é	Absolute value
-Ç	Convert integer to float
+Ã©	Absolute value
+Ã‡	Convert integer to float
 
 Comparison
 ----------
@@ -32,22 +32,22 @@ Pre-initialized Variables
 a	Push the lowercase alphabet
 d	Push all digits
 A	Push the uppercase alphabet
-Ù	Push an empty list
-Â	Push the number 10
-Ô	Push the number 100
-Û	Push the number 255
+Ã™	Push an empty list
+Ã‚	Push the number 10
+Ã”	Push the number 100
+Ã›	Push the number 255
 \	Pushes a list with numbers in the range n-n
-æ	Pushes a space
-à	Push pi
-è	Push e
-ì	Push phi
+Ã¦	Pushes a space
+Ã 	Push pi
+Ã¨	Push e
+Ã¬	Push phi
 @	Push newline
 
 Alt. Commands (DEPRECATED)
 --------------------------
 
-²	Insert alt. command after this
-Ë	Splits string into chunks of two
+Â²	Insert alt. command after this
+Ã‹	Splits string into chunks of two
 c	Product as a list
 f	Integer to float
 i	Minimum of a list
@@ -80,24 +80,24 @@ R	Reverses a string or list
 S	Turns a string into a list
 Y	Split a string by another string
 Z	Gets the length of a UTF-8 encoded string
-á	Count occurrences of string in another string
-î	Split string into letters
-ô	Remove all non-letters
-Á	Removes certain characters in a string
-À	Concatenates two string
-È	Splits a string at commas
-ö	Remove all non-digits
-å	Divide string into chunks of n
+Ã¡	Count occurrences of string in another string
+Ã®	Split string into letters
+Ã´	Remove all non-letters
+Ã	Removes certain characters in a string
+Ã€	Concatenates two string
+Ãˆ	Splits a string at commas
+Ã¶	Remove all non-digits
+Ã¥	Divide string into chunks of n
 ?	Swapcase
 :	Uppercase
 '	Lowercase
-Ø	Titlecase
+Ã˜	Titlecase
 
 Input
 -----
 i	Get input
 I	Input as integer
-ã	Multiply integer by input
+Ã£	Multiply integer by input
 
 Output and Stack Management
 ---------------------------
@@ -105,8 +105,8 @@ o	Outputs the top stack item
 p	Pops the top item from the stack
 U	Duplicates a value
 V	Reverses the stack
-Ä	Push the 2nd-top stack item
-Ö	Push the 3rd-top stack item
+Ã„	Push the 2nd-top stack item
+Ã–	Push the 3rd-top stack item
 
 Lists
 --------------
@@ -118,23 +118,23 @@ M	Get the sum of all list items
 Q	Sorts a list
 T	Converts all list items to integers
 X	Shuffles a list
-ì	Check if item is in list
-É	Gets the mean of a list
-Í	Gets the mode of a list
-Ó	Gets the median of a list
-Ú	Enumerate list
-Ò	Get the product of a list
-Ì	Join a list by a string
-Ê	Extends a list with another one
-Î	Inserts a list item at a certain index
-ò	Split a string at a substring, push first part
-ó	Split a string at a substring, push second part
-ù	Get maximum
-ä	Join stack divided by spaces
-ü	Get minimum
-â	Join stack
-ç	Convert list to string
-ß	Check if list contains item
+Ã¬	Check if item is in list
+Ã‰	Gets the mean of a list
+Ã	Gets the mode of a list
+Ã“	Gets the median of a list
+Ãš	Enumerate list
+Ã’	Get the product of a list
+ÃŒ	Join a list by a string
+ÃŠ	Extends a list with another one
+Ã	Inserts a list item at a certain index
+Ã²	Split a string at a substring, push first part
+Ã³	Split a string at a substring, push second part
+Ã¹	Get maximum
+Ã¤	Join stack divided by spaces
+Ã¼	Get minimum
+Ã¢	Join stack
+Ã§	Convert list to string
+ÃŸ	Check if list contains item
 &	Push reversed item to list
 ;	Shift a list by n
 %	Join a list by a string
@@ -152,14 +152,14 @@ N	Increment a number
 O	Get the ASCII value of a character
 P	Checks if a number is a prime
 W	Writes to a file
-Ë	XOR
-Ï	Shift left
-Ü	Shift right
-Ã	AND
-Ñ	NOT
-Õ	OR
+Ã‹	XOR
+Ã	Shift left
+Ãœ	Shift right
+Ãƒ	AND
+Ã‘	NOT
+Ã•	OR
 $	Return product of two items as a list
-¨	Sleeps for one second
+Â¨	Sleeps for one second
 ,	Placeholder, does nothing
 
 General
@@ -168,7 +168,7 @@ General
 ""	Everything between quotes are pushed. 	Syntax: "text"
 ``	Replacement.				Syntax: `this|that`
 __	Pushes a multi-digit number.		Syntax: _42_
-{}	Anonymous function.			Syntax: {code}
+{}	If statement (no implicit output)			Syntax: {code}
 ()	If statement.				Syntax: (code)
 []	While loop.				Syntax: [code]
-«»	Map.					Syntax: «code»
+Â«Â»	Map.					Syntax: Â«codeÂ»
