@@ -10,6 +10,7 @@ import statistics
 import urllib.request
 import string
 import re
+import sys
 try:
     from fractions import gcd
 except ImportError:
@@ -312,10 +313,10 @@ COMMANDS = {
     118: lambda x:x.peek().insert(x.peekc(2), x.pop()),
     235: lambda x:x.push(100),
     251: lambda x:x.push(255),
-    99: lambda x:x.push(x.peekc(2)),
+    99: lambda x:print(x.peekc(2)),
     115: lambda x:x.push(x.peek() ^ x.peekc(2)),
     119: lambda x:x.push(x.peek() << x.peekc(2)),
-    236: lambda x:x.push(x.peekc(3)),
+    236: lambda x:print(x.peekc(3)),
     #223: lambda x:x.push(list(c*-~i for i,c in x.pop())),
     252: lambda x:x.push(x.peek() >> x.peekc(2)),
     102: lambda x:x.push(x.peek() & x.peekc(2)),
@@ -355,7 +356,7 @@ COMMANDS = {
     158: not_implemented_error(),
     159: lambda x:x.push(str(x.pop())),
     160: not_implemented_error(),
-    161: lambda x:x.push(random.randint(0, x.pop())),
+    161: lambda x:x.push(random.randint(0, x.peek())),
     172: not_implemented_error(),
     173: not_implemented_error(),
     174: not_implemented_error(),
@@ -372,7 +373,7 @@ COMMANDS = {
     191: not_implemented_error(),
     205: lambda x:x.push(split_list2(x.pop(), x.pop())),
     206: lambda x:x.push(split_list(x.pop(), x.pop())),
-    207: not_implemented_error(),
+    207: lambda x:sys.exit(),
     218: not_implemented_error(),
     219: not_implemented_error(),
     220: lambda x:x.push(min(x.peek())),
@@ -380,6 +381,7 @@ COMMANDS = {
     222: not_implemented_error(),
     225: not_implemented_error(),
     250: not_implemented_error(),
+	107: lambda x:x.push(1 - x.pop()),
 }
 
 ALT_COMMANDS = {

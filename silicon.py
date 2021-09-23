@@ -49,9 +49,6 @@ class Interpreter:
             elif code[i] == '¨':
                 time.sleep(1)
 
-            elif code[i] == ',':
-                pass
-
             elif code[i] == '½':
                 self.implicitOutput = False
 
@@ -60,34 +57,6 @@ class Interpreter:
 
             elif code[i] == 'V':
                 self.stack = self.stack[::-1]
-
-            # Commands for working with the ASCII art module
-            elif code[i] == 'Å':
-                while i < len(code):
-                    i += 1
-                    if code[i] == 'Å': break
-
-                    if code[i] == 's':
-                        self.push(self.asc.grid)
-
-                    elif code[i] == 'p':
-                        pprint.pprint(self.asc.grid)
-
-                    elif code[i] == 'd':
-                        self.asc.draw(self.pop(), self.pop(), self.pop())
-
-                    elif code[i] == 'm':
-                        self.asc.move(self.pop(), self.pop(), self.pop(),
-                                      self.pop())
-
-                    elif code[i] == 'e':
-                        self.asc.erase(self.pop(), self.pop())
-
-                    elif code[i] == 'G':
-                        self.asc.draw_ground()
-
-                    elif code[i] == 'C':
-                        self.asc.draw_ceil()
 
             # Pushes everything in between the quotes on to the stack.
             elif code[i] == '"':

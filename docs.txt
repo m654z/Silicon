@@ -42,8 +42,8 @@ A	Push the uppercase alphabet
 ì	Push phi
 @	Push newline
 
-Alt. Commands
--------------
+Alt. Commands (DEPRECATED)
+--------------------------
 
 ²	Insert alt. command after this
 Ë	Splits string into chunks of two
