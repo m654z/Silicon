@@ -1,7 +1,6 @@
 from functools import *
 from commands import *
 import time
-import ascii_lib
 import cp037
 import sys
 
