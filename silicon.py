@@ -6,12 +6,12 @@ import cp037
 import sys
 
 class Interpreter:
-    grid = 0
     it = 0
+    ifValue = 0
     stack = []
     function = ""
     argFunc = ""
-    debug = False
+    debug = True
     implicitOutput = True
     asc = ascii_lib.AsciiArt()
     cp = cp037.CP037()
@@ -42,8 +42,20 @@ class Interpreter:
             if self.debug == True:
                 print(self.stack)
                 print(code[i])
+
+            if code[i] == '=':
+                ifValue = int(self.pop() == self.pop())
+
+            elif code[i] == '>':
+                ifValue = int(self.pop() > self.pop())
+
+            elif code[i] == '<':
+                ifValue = int(self.pop() < self.pop())
+
+            elif code[i] == ',':
+                ifValue = 1 - ifValue
                 
-            if code[i] in "0123456789":
+            elif code[i] in "0123456789":
                 self.push(int(code[i]))
 
             elif code[i] == '¨':
@@ -63,6 +75,7 @@ class Interpreter:
                 text = ''
                 while i < len(code):
                     i += 1
+                    if i == len(code): break
                     if code[i] == '"': break
                     text += code[i]
 
@@ -90,18 +103,7 @@ class Interpreter:
 
                 self.push(int(num))
 
-            # Anonymous function.
-            # Syntax: {code}
-            elif code[i] == '{':
-                func = ''
-                while i < len(code):
-                    i += 1
-                    if code[i] == '}': break
-                    func += code[i]
-
-                self.function = func
-
-            # If statement, runs only if the top stack value is 1
+            # If statement, runs only if the ifValue is 1
             elif code[i] == '(':
                 ifCode = ''
                 while i < len(code):
@@ -109,8 +111,21 @@ class Interpreter:
                     if code[i] == ')': break
                     ifCode += code[i]
 
-                if self.peek() == 1:
+                if ifValue == 1:
                     self.run(ifCode)
+
+            # If statement without implicit output.
+            elif code[i] == '{':
+                ifCode = ''
+                while i < len(code):
+                    i += 1
+                    if code[i] == '}': break
+                    ifCode += code[i]
+
+                if ifValue == 1:
+                    self.implicitOutput = False
+                    self.run(ifCode)
+                    self.implicitOutput = True
 
             # While loop
             elif code[i] == '[':
